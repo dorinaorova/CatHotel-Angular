@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="d-grid gap-2 col-8 mx-auto">
+    <figure class="text-center">
+        <h1>My registrations</h1>
+    </figure>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Cat id</th>
+            <th scope="col">Start</th>
+            <th scope="col">End</th>  
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody >
+            <tr *ngFor="let reg of regs; index as i; first as isFirst">
+                <th scope="col">{{reg.cat_id}}</th>
+                <th scope="col">{{reg.start}}</th>
+                <th scope="col">{{reg.end}}</th>
+                <th scope="col"class="btn" (click)="deleteReg(reg.id, reg.cat_id)" ><i class="fa fa-trash"></i></th>
+            </tr>
+        </tbody>
+    </table>

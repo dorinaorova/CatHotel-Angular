@@ -1,0 +1,25 @@
+<div class="d-grid gap-2 col-6 mx-auto">
+    <figure class="text-center">
+        <h1>Registrate {{cat?.name}}</h1>
+    </figure>
+<form #regPost="ngForm" (ngSubmit)="onSubmit(regPost.value)">
+    <div class="mb-3 row">
+        <label for="start" class="col-sm-2 col-form-label">Start date:</label>
+        <div  class="col-sm-10">
+            <input type="date" id="start" name="start" [(ngModel)]="start">
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="end" class="col-sm-2 col-form-label">End date:</label>
+        <div  class="col-sm-10">
+            <input type="date" id="end" name="end" [(ngModel)]="end">
+        </div>
+    </div>
+
+    <div class="d-grid gap-2 col-4 mx-auto">
+
+        <button type="submit" class="btn btn-dark" routerlink="/catlist">Submit</button>
+
+    </div>
+</form>

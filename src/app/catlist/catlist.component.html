@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="d-grid gap-2 col-8 mx-auto">
+    <figure class="text-center">
+        <h1>My cats</h1>
+    </figure>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Colour</th>
+            <th scope="col">Hotel</th>
+            <th scope="col">Update/Register</th>
+            <th scope="col" *ngIf="admin()">Owner Id</th>
+        </tr>
+        </thead>
+        <tbody >
+            <tr *ngFor="let cat of cats; index as i; first as isFirst">
+                <th scope="col">{{cat.name}}</th>
+                <th scope="col">{{cat.colour}}</th>
+                <th scope="col" *ngIf="cat.registered">Yes</th>
+                <th scope="col" *ngIf="!cat.registered">No</th>
+                <th scope="col"class="btn" (click)="updateCat(cat.id)"><i class="fa fa-pencil-square"></i></th>
+                <th scope="col" class="btn" (click)="registerCat(cat.id)" *ngIf="!cat.registered"><i class="fa fa-book"></i></th>
+                <th scope="col" *ngIf="admin()">{{cat.user_id}}</th>
+            </tr>
+        </tbody>
+    </table>
+
+  
