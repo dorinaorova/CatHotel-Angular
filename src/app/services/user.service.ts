@@ -16,9 +16,6 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  public getUsers() :Observable<User[]>{
-    return this.http.get<User[]>(`${this.apiServerUrl}/user/all`);
-  } 
 
   public addUser(data: User){
     return this.http.post(`${this.apiServerUrl}/user/add`, data);

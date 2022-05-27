@@ -28,7 +28,12 @@ end: Date;
    }
 
   ngOnInit(): void {
-    this.getCat(this.id);
+    if(localStorage.getItem('login')=="true"){
+      this.getCat(this.id);
+    }
+    else{
+      this.router.navigate(['/login']);
+    }
   }
 
   public getCat(id: number):void{
@@ -50,8 +55,10 @@ end: Date;
       id: 0
     }
     this.catService.regCat(data, this.id).subscribe(
-      (result) => console.warn("result", result));
-    this.router.navigate(['/catlist']);
+      (result) => {console.warn("result", result)
+      this.router.navigate(['/catlist']);
+    });
+    
 }
 
 }

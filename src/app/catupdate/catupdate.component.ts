@@ -23,7 +23,12 @@ export class CatupdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCat(this.id);
+    if(localStorage.getItem('login')=="true"){
+      this.getCat(this.id);
+    }
+    else{
+      this.router.navigate(['/login']);
+    }
   }
 
   public getCat(id: number):void{
@@ -44,35 +49,42 @@ export class CatupdateComponent implements OnInit {
       if(this.cat.registered==true) reg=true;
       else reg=false;
     }
-    var name : string;
-    if(this.cat?.name==undefined) name="";
+    var catname : string;
+    if(this.cat?.name==undefined) catname="";
     else {
-      if(data.name=='') name=this.cat.name;
-      else name=data.name;
+      if(data.name=='') catname=this.cat.name;
+      else catname=data.name;
     }
-    var colour : string;
-    if(this.cat?.colour==undefined) colour="";
+    var catcolour : string;
+    if(this.cat?.colour==undefined) catcolour="";
     else {
-      if(data.colour=='') colour=this.cat.colour;
-      else colour=data.colour;
+      if(data.colour=='') {
+        catcolour=this.cat.colour;       
+      }
+      else{         
+        catcolour=data.colour
+      };
     }
     const cat: Cat={
       id: this.id,
-      name: name,
-      colour: colour,
+      name: catname,
+      colour: catcolour,
       user_id: Number(localStorage.getItem('userId')),
       registered: reg
     }
-    this.catService.updateCat(data, this.id).subscribe(
-      (result) => console.warn("result", result));
+    this.catService.updateCat(cat, this.id).subscribe(
+      (result) => {console.warn("result", result);
       this.router.navigate(['/catlist']);
+    });
+      
   }
 
   public deleteCat(){
-    this.catService.deleteCat(this.id).subscribe(
-      (result) => console.warn("result", result));
-      this.router.navigate(['/catlist']);
+    if(this.cat!=undefined){
+    this.catService.deleteCat(Number(localStorage.getItem('userId')), this.cat).subscribe(
+      (result) => {
+        console.warn("result", result);
+        this.router.navigate(['/catlist']);});
+    }
   }
-  
-
 }

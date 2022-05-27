@@ -10,17 +10,15 @@ import { User } from '../models/user';
 })
 export class AuthenticationService {
 
-  key: string = 'user';
-  login_key: string = 'login';
-  user: User | undefined;
   private apiServerUrl=environment.apiBaseUrl;
   
   constructor(private http: HttpClient) { 
   }
 
     logout() {
-      localStorage.removeItem(this.key);
-      localStorage.removeItem(this.login_key);
+      localStorage.removeItem('userId');
+      localStorage.removeItem('login');
+      localStorage.removeItem('userRole');
     }
     
   public auth(email: string, password: string): Observable<User>{

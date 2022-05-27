@@ -14,12 +14,18 @@ export class NewcatComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    if(localStorage.getItem('login')!="true"){
+      this.router.navigate(['/login']);
+    }
   }
 
   onSubmit(data: any){  
     this.catService.addCat(data, Number(localStorage.getItem('userId'))).subscribe(
-      (result) => console.warn("result", result));
-    this.router.navigate(['/catlist']);
+      (result) => {
+        console.warn("result", result);
+        this.router.navigate(['/catlist']);
+    });
+    
 }
 
 }

@@ -21,21 +21,20 @@ export class NewuserComponent implements OnInit {
   }
   onSubmit(data: User){  
       this.userService.addUser(data).subscribe(
-        (result) => console.warn("result", result));
+        (result) =>{ console.warn("result", result)
 
-      this.authService.auth(data.email, data.password).subscribe(
-          (response: User) => {
-            this.user = response;
-            localStorage.setItem('userId', response.id.toString());
-            localStorage.setItem('userRole', response.roles);
-            localStorage.setItem('login', "true");          
-            this.router.navigate(['/catlist']);
-          },
-          (error: HttpErrorResponse) =>{
-            alert("Incorrect email/password");
-          }
-        );
-
+          this.authService.auth(data.email, data.password).subscribe(
+              (response: User) => {
+                this.user = response;
+                localStorage.setItem('userId', response.id.toString());
+                localStorage.setItem('userRole', response.roles);
+                localStorage.setItem('login', "true");          
+                this.router.navigate(['/catlist']);
+              },
+              (error: HttpErrorResponse) =>{
+                alert("Incorrect email/password");
+              }
+            );
+      });
   }
-
 }

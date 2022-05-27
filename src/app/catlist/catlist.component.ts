@@ -18,7 +18,13 @@ export class CatlistComponent implements OnInit {
    }
 
   ngOnInit(): void { 
-    this.getCats();
+    if(localStorage.getItem('login')=="true"){
+      this.getCats();
+    }
+    else{
+      this.router.navigate(['/login']);
+    }
+    
   }
 
   
@@ -46,7 +52,7 @@ export class CatlistComponent implements OnInit {
   }
 
   public updateCat(id: number){
-    this.router.navigate(['/catupdate/', id]);
+  this.router.navigate(['/catupdate/', id]);
   }
 
   public registerCat(id: number){

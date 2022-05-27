@@ -9,8 +9,9 @@
             <th scope="col">Name</th>
             <th scope="col">Colour</th>
             <th scope="col">Hotel</th>
-            <th scope="col">Update/Register</th>
             <th scope="col" *ngIf="admin()">Owner Id</th>
+            <th scope="col">Update/Register</th>
+            
         </tr>
         </thead>
         <tbody >
@@ -19,9 +20,10 @@
                 <th scope="col">{{cat.colour}}</th>
                 <th scope="col" *ngIf="cat.registered">Yes</th>
                 <th scope="col" *ngIf="!cat.registered">No</th>
+                <th scope="col" *ngIf="admin()">{{cat.user_id}}</th>
                 <th scope="col"class="btn" (click)="updateCat(cat.id)"><i class="fa fa-pencil-square"></i></th>
                 <th scope="col" class="btn" (click)="registerCat(cat.id)" *ngIf="!cat.registered"><i class="fa fa-book"></i></th>
-                <th scope="col" *ngIf="admin()">{{cat.user_id}}</th>
+                
             </tr>
         </tbody>
     </table>

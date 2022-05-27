@@ -28,8 +28,8 @@ export class CatService {
     return this.http.put(`${this.apiServerUrl}/cat/update/${id}`, data);
   }
 
-  public deleteCat(id: number){
-    return this.http.delete(`${this.apiServerUrl}/cat/delete/${id}`);
+  public deleteCat(id: number, data: Cat){
+    return this.http.put(`${this.apiServerUrl}/user/deletecat/${id}`, data);
   }
 
   public regCat(data: Registration, id: number){

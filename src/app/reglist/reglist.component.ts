@@ -19,13 +19,15 @@ export class ReglistComponent implements OnInit {
    }
 
   ngOnInit(): void { 
-    this.getRegs();
+    
+    if(localStorage.getItem('login')=="true"){
+      this.getRegs();
+    }
+    else{
+      this.router.navigate(['/login']);
+    }
   }
-
-  
   public getRegs() : void{
-
-
     if(localStorage.getItem('userRole')=="admin"){
       this.service.getRegs().subscribe(
         (response: Registration[]) => {
